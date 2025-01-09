@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Login Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background: #fef7e6;
+            margin: 0;
+            
+        }
+
+        section.main-sec {
+            margin: 30px 0px;
+            padding: 40px;
+        }
+
+        .login-container {
+            background: #fef7e6;
+            padding: 100px 30px;
+            border-radius: 10px;
+
+        }
+
+        .login-container h1 {
+            margin-top: -60px;
+            margin-bottom: 20px;
+            font-size: 40px;
+            color: #654f42;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+
+
+        .form-group {
+            margin-bottom: 15px;
+
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #555;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #C9C2B2;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #030303;
+        }
+
+        .login-button {
+            width: 50%;
+            padding: 10px;
+            background: #7c6346;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+
+        }
+
+        .login-button:hover {
+            background: #d6b88e;
+        }
+
+        .account {
+            text-align: center;
+
+        }
+
+        p a {
+            text-decoration: none;
+            color: #545252;
+        }
+
+        p a:hover {
+            color: #7c6346;
+        }
+
+        img {
+            border-radius: 15px;
+        }
+
+        .logo {
+            margin-top: -50px;
+        }
+
+        .forgot {
+            font-size: 14px;
+        }
+
+        .footer {
+            max-width: 1000;
+            margin: 20px;
+            background: #f3e8cf;
+            padding: 0px 30px;
+            border-radius: 10px;
+        }
+
+        .btn-01 {
+            text-align: center;
+        }
+
+        .mainfoot {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logo2 {
+            object-fit: cover;
+        }
+
+        svg{
+            margin-left: -50px;
+            margin-top: -50px;
+        }
+
+        .homebutton{
+            list-style: none;
+            text-decoration: none;
+            color: #44352d;
+        }
+        .homebutton:hover{
+            color: #654f42;
+        }
+        .error-message {
+            display: none;
+            color: red;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 15px 20px;
+            }
+
+            .login-container h1 {
+                margin-top: 0px;
+                text-align: center;
+            }
+
+            img {
+                border-radius: 15px;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="main-sec">
+        <img class="logo" src="images/Pink_and_White_Minimalist_Professional_Initial_Logo-removebg-preview.png"
+            width="170px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    
+                    <div class="login-container">
+                        <a href="Home.html" class="homebutton">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" fill="currentColor" class="bi bi-house-door-fill" viewBox="0 0 16 16">
+                            <path d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5"/>
+                          </svg>
+                        </a>
+                        <h1><strong>Login</strong></h1><br><br>
+                        <div class="error-message" id="error-message">Invalid username or password</div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" placeholder="Enter your username"><br><br>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password"><br><br>
+                            <p class="forgot"><a href="forgot_pass.html">Forgot Password?</a></p><br>
+                        </div>
+                        <div class="btn-01">
+                            <button class="login-button" id="login-button">Login</button><br><br>
+                        </div>
+                        <p class="account"><a href="registration.html">Don't have an Account?</a></p>
+                    </div>
+                    
+                </div>
+                <div class="col-md-6">
+                    <div class="main-img">
+                        <img src="images/download (1).jpeg" alt="" width="635px" height="635px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        document.getElementById('login-button').addEventListener('click', function () {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('error-message');
+
+            if (username === 'admin' && password === 'password') {
+                alert('Login successful!');
+                errorMessage.style.display = 'none';
+            } else {
+                errorMessage.style.display = 'block';
+            }
+        });
+    </script>
+   
+    <footer class="footer">
+        <div class="mainfoot">
+            <img class="logo2" src="images/Pink_and_White_Minimalist_Professional_Initial_Logo-removebg-preview.png"
+                width="170px">
+            <img src="images/footer_img-removebg-preview.png" width="100px" class="ïmgfooter">
+        </div>
+    </footer>
+</body>
+
+</html>
