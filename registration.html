@@ -216,19 +216,34 @@
     </section>
 
     <script>
-        document.getElementById('login-button').addEventListener('click', function () {
+        document.getElementById('login-button').addEventListener('click', async function (e) {
+            e.preventDefault();
+            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-
-            if (username === 'admin' && password === 'password') {
-                alert('Login successful!');
-                errorMessage.style.display = 'none';
-            } else {
-                errorMessage.style.display = 'block';
+            const email = document.getElementById('email').value;
+    
+            try {
+                const response = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password })
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    window.location.href = 'Login.html'; // Redirect to login page
+                } else {
+                    alert(data.message || 'Registration failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
             }
         });
     </script>
+    
     <footer class="footer">
         <div class="mainfoot">
             <img class="logo2" src="images/Pink_and_White_Minimalist_Professional_Initial_Logo-removebg-preview.png"

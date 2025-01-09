@@ -216,19 +216,33 @@
     </section>
     
     <script>
-        document.getElementById('login-button').addEventListener('click', function () {
+        document.getElementById('login-button').addEventListener('click', async function (e) {
+            e.preventDefault();
+            
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
-            const errorMessage = document.getElementById('error-message');
-
-            if (username === 'admin' && password === 'password') {
-                alert('Login successful!');
-                errorMessage.style.display = 'none';
-            } else {
-                errorMessage.style.display = 'block';
+    
+            try {
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password })
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    alert('Login successful!');
+                    // Redirect to a dashboard or home page if needed
+                } else {
+                    alert(data.message || 'Invalid username or password');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
             }
         });
     </script>
+    
    
     <footer class="footer">
         <div class="mainfoot">
