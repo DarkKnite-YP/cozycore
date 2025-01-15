@@ -218,11 +218,47 @@
         </form>
     </div>
     <script>
-        document.getElementById('yogaForm').addEventListener('submit', function (e) {
-            e.preventDefault();
-            alert('Thank you for submitting the form!');
+        document.getElementById('yogaForm').addEventListener('submit', async function (e) {
+            e.preventDefault(); // Prevent default form submission behavior
+    
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                dob: document.getElementById('dob').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                yogaExperience: document.querySelector('input[name="yogaExperience"]:checked').value,
+                yogaStyles: document.getElementById('yogaStyles').value,
+                yogaGoals: document.getElementById('yogaGoals').value,
+                medicalConditions: document.querySelector('input[name="medicalConditions"]:checked').value,
+                conditionsDescription: document.getElementById('conditionsDescription').value,
+                medications: document.getElementById('medications').value,
+                conditions: Array.from(document.querySelectorAll('input[name="conditions"]:checked')).map(
+                    (checkbox) => checkbox.value
+                ),
+                pregnancy: document.querySelector('input[name="medicalConditions"]:checked').value,
+            };
+    
+            try {
+                const response = await fetch('/api/formSubmit', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData),
+                });
+    
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message);
+                    document.getElementById('yogaForm').reset(); // Clear the form
+                } else {
+                    alert(data.error || 'Failed to submit the form');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            }
         });
     </script>
+    
     <footer class="footer">
         <div class="mainfoot">
             <img class="logo2" src="images/Pink_and_White_Minimalist_Professional_Initial_Logo-removebg-preview.png"
